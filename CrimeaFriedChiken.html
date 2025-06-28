@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz: Anexión Rusa – Ucrania</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; padding: 20px; }
+        h1 { color: #0056b3; }
+        .quiz { margin-bottom: 20px; background: white; padding: 15px; border-radius: 8px; }
+        .quiz img { max-width: 100%; border-radius: 5px; margin: 10px 0; }
+        .options label { display: block; margin-bottom: 5px; }
+        button { margin-top: 10px; padding: 8px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .feedback { margin-top: 10px; padding: 10px; border-radius: 4px; }
+        .correct { background: #d4edda; color: #155724; }
+        .wrong { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+
+    <h1>Quiz: Anexión Rusa de Territorios Ucranianos</h1>
+
+    <!-- Pregunta 1 -->
+    <div class="quiz" id="q1">
+        <h2>1. ¿En qué año tuvo lugar la anexión rusa de Crimea?</h2>
+        <img src="https://via.placeholder.com/600x300?text=Anexi%C3%B3n+de+Crimea+2014" alt="Mapa de Crimea">
+        <div class="options">
+            <label><input type="radio" name="q1" value="a"> A) 2012</label>
+            <label><input type="radio" name="q1" value="b"> B) 2014</label>
+            <label><input type="radio" name="q1" value="c"> C) 2016</label>
+            <label><input type="radio" name="q1" value="d"> D) 2018</label>
+        </div>
+        <button onclick="checkAnswer('q1','b')">Verificar respuesta</button>
+        <div class="feedback" id="f1"></div>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="quiz" id="q2">
+        <h2>2. ¿Cuál de estas regiones NO fue anexada por Rusia en septiembre de 2022?</h2>
+        <img src="https://via.placeholder.com/600x300?text=Mapa+Donetsk+Luhansk+Kherson+Zaporizhzhia" alt="Mapa del este de Ucrania">
+        <div class="options">
+            <label><input type="radio" name="q2" value="a"> A) Donetsk</label>
+            <label><input type="radio" name="q2" value="b"> B) Kiev</label>
+            <label><input type="radio" name="q2" value="c"> C) Luhansk</label>
+            <label><input type="radio" name="q2" value="d"> D) Kherson</label>
+        </div>
+        <button onclick="checkAnswer('q2','b')">Verificar respuesta</button>
+        <div class="feedback" id="f2"></div>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="quiz" id="q3">
+        <h2>3. ¿Cómo denominó Rusia su invasión de Ucrania en 2022?</h2>
+        <img src="https://via.placeholder.com/600x300?text=Operaci%C3%B3n+militar+especial" alt="Tropas rusas en Ucrania">
+        <div class="options">
+            <label><input type="radio" name="q3" value="a"> A) Guerra santa</label>
+            <label><input type="radio" name="q3" value="b"> B) Operación militar especial</label>
+            <label><input type="radio" name="q3" value="c"> C) Invasión preventiva quirúrgica</label>
+            <label><input type="radio" name="q3" value="d"> D) Campaña relámpago</label>
+        </div>
+        <button onclick="checkAnswer('q3','b')">Verificar respuesta</button>
+        <div class="feedback" id="f3"></div>
+    </div>
+
+    <!-- Pregunta 4 -->
+    <div class="quiz" id="q4">
+        <h2>4. ¿Cuál es la superficie total de Rusia?</h2>
+        <img src="https://via.placeholder.com/600x300?text=Mapa+de+Rusia" alt="Mapa de Rusia">
+        <div class="options">
+            <label><input type="radio" name="q4" value="a"> A) 9 millones de km²</label>
+            <label><input type="radio" name="q4" value="b"> B) 12 millones de km²</label>
+            <label><input type="radio" name="q4" value="c"> C) 17 millones de km²</label>
+            <label><input type="radio" name="q4" value="d"> D) 21 millones de km²</label>
+        </div>
+        <button onclick="checkAnswer('q4','c')">Verificar respuesta</button>
+        <div class="feedback" id="f4"></div>
+    </div>
+
+    <!-- Pregunta 5 -->
+    <div class="quiz" id="q5">
+        <h2>5. ¿Quién es el presidente actual de Rusia (2025)?</h2>
+        <img src="https://via.placeholder.com/600x300?text=Vladimir+Putin" alt="Presidente de Rusia">
+        <div class="options">
+            <label><input type="radio" name="q5" value="a"> A) Volodímir Zelensky</label>
+            <label><input type="radio" name="q5" value="b"> B) Joe Biden</label>
+            <label><input type="radio" name="q5" value="c"> C) Vladimir Putin</label>
+            <label><input type="radio" name="q5" value="d"> D) Alexéi Navalni</label>
+        </div>
+        <button onclick="checkAnswer('q5','c')">Verificar respuesta</button>
+        <div class="feedback" id="f5"></div>
+    </div>
+
+    <script>
+        function checkAnswer(qId, correct) {
+            const q = document.getElementById(qId);
+            const choices = q.querySelector('input[type="radio"]:checked');
+            const fb = document.getElementById('f' + qId.charAt(1));
+            if (!choices) {
+                fb.textContent = 'Por favor selecciona una opción.';
+                fb.className = 'feedback wrong';
+                return;
+            }
+            if (choices.value === correct) {
+                fb.textContent = '¡Correcto!';
+                fb.className = 'feedback correct';
+            } else {
+                fb.textContent = 'Incorrecto. La respuesta correcta es: opción ' + correct.toUpperCase() + '.';
+                fb.className = 'feedback wrong';
+            }
+        }
+    </script>
+
+</body>
+</html>
